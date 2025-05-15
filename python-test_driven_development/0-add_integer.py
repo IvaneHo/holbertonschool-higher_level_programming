@@ -1,9 +1,6 @@
 #!/usr/bin/python3
 """
 This module provides a function to add two integers.
-It handles integer and float inputs.
-If inputs are invalid, a TypeError is raised.
-Float inputs are cast to integers.
 
 Examples:
     >>> add_integer(1, 2)
@@ -26,10 +23,11 @@ def add_integer(a, b=98):
     """
     Adds two integers or floats casted to integers.
 
-    Returns the result of a + b as an integer.
+    Returns:
+        The sum of a and b.
 
     Raises:
-        TypeError: If a or b are not integers or floats.
+        TypeError: if a or b is not an int or float.
     """
     if not isinstance(a, (int, float)):
         raise TypeError("a must be an integer")

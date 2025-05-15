@@ -6,6 +6,7 @@ If inputs are invalid, a TypeError is raised.
 Float inputs are cast to integers.
 """
 
+
 def add_integer(a, b=98):
     """
     Adds two integers or floats casted to integers.

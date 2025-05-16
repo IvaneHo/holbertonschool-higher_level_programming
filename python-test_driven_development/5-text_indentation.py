@@ -19,12 +19,11 @@ def text_indentation(text):
 
     i = 0
     while i < len(text):
+        print(text[i], end="")
         if text[i] in ".?:":
-            print(text[:i + 1].strip())
-            print()
-            text = text[i + 1:].lstrip()
-            i = 0
-        else:
+            print("\n")
             i += 1
-    if text:
-        print(text.strip(), end="")
+            while i < len(text) and text[i] == " ":
+                i += 1
+            continue
+        i += 1

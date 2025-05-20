@@ -6,7 +6,7 @@ class Node:
     """Represents a node of a singly linked list."""
 
     def __init__(self, data, next_node=None):
-        """Initialize a Node with data and an optional next_node."""
+        """Initialize a Node with data and optional next_node."""
         self.data = data
         self.next_node = next_node
 
@@ -62,4 +62,4 @@ class SinglyLinkedList:
         while current is not None:
             nodes.append(str(current.data))
             current = current.next_node
-        return "\n".join(nodes)
+        return "\n".join(nodes) + "\n" if nodes else ""

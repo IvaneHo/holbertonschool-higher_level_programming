@@ -1,9 +1,9 @@
 #!/usr/bin/python3
-"""Defines a Rectangle with width, height, area, perimeter and string representations."""
+"""Defines a Rectangle with width, height, area, perimeter and repr support."""
 
 
 class Rectangle:
-    """Class that represents a rectangle."""
+    """Class that defines a rectangle."""
 
     def __init__(self, width=0, height=0):
         self.width = width
@@ -44,10 +44,7 @@ class Rectangle:
     def __str__(self):
         if self.__width == 0 or self.__height == 0:
             return ""
-        rect = []
-        for _ in range(self.__height):
-            rect.append("#" * self.__width)
-        return "\n".join(rect)
+        return "\n".join(["#" * self.__width for _ in range(self.__height)])
 
     def __repr__(self):
-        return f"Rectangle({self.__width}, {self.__height})"
+        return "Rectangle({}, {})".format(self.__width, self.__height)

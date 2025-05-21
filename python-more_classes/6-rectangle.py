@@ -1,15 +1,17 @@
 #!/usr/bin/python3
-"""Defines a Rectangle class with width, height, area, perimeter, str, repr,
-and deletion behavior.
+"""Defines a Rectangle class with width, height, instance counter, and more.
 """
 
 
 class Rectangle:
-    """Defines a rectangle with optional width and height."""
+    """Rectangle with width, height, and instance tracking."""
+
+    number_of_instances = 0  # Class attribute
 
     def __init__(self, width=0, height=0):
         self.width = width
         self.height = height
+        Rectangle.number_of_instances += 1
 
     @property
     def width(self):
@@ -53,3 +55,4 @@ class Rectangle:
 
     def __del__(self):
         print("Bye rectangle...")
+        Rectangle.number_of_instances -= 1

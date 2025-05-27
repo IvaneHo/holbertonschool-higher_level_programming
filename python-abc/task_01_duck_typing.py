@@ -17,6 +17,8 @@ class Shape(ABC):
 
 class Circle(Shape):
     def __init__(self, radius):
+        if not isinstance(radius, (int, float)) or radius <= 0:
+            raise ValueError("radius must be a positive number")
         self.radius = radius
 
     def area(self):
@@ -28,6 +30,10 @@ class Circle(Shape):
 
 class Rectangle(Shape):
     def __init__(self, width, height):
+        if not all(isinstance(v, (int, float)) for v in (width, height)):
+            raise TypeError("width and height must be numbers")
+        if width <= 0 or height <= 0:
+            raise ValueError("width and height must be > 0")
         self.width = width
         self.height = height
 

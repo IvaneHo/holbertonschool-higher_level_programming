@@ -1,11 +1,13 @@
-#!/usr/bin/env python3
-"""Shape abstract base with Circle and Rectangle for duck typing."""
+#!/usr/bin/python3
+"""Custom shapes using duck typing and abstract classes."""
 
 from abc import ABC, abstractmethod
 import math
 
 
 class Shape(ABC):
+    """Base class for geometric shapes."""
+
     @abstractmethod
     def area(self):
         pass
@@ -16,39 +18,40 @@ class Shape(ABC):
 
 
 class Circle(Shape):
+    """Circle defined by its radius."""
     def __init__(self, radius):
-        if not isinstance(radius, (int, float)):
+        if type(radius) not in (int, float):
             raise TypeError("radius must be a number")
         if radius <= 0:
             raise ValueError("radius must be positive")
-        self.__radius = radius
+        self.__r = radius
 
     def area(self):
-        return math.pi * self.__radius ** 2
+        return math.pi * self.__r ** 2
 
     def perimeter(self):
-        return 2 * math.pi * self.__radius
+        return 2 * math.pi * self.__r
 
 
 class Rectangle(Shape):
+    """Rectangle with width and height."""
     def __init__(self, width, height):
-        if not isinstance(width, (int, float)):
-            raise TypeError("width must be a number")
-        if not isinstance(height, (int, float)):
-            raise TypeError("height must be a number")
-        if width <= 0 or height <= 0:
-            raise ValueError("width and height must be positive")
-        self.__width = width
-        self.__height = height
+        for val, label in ((width, "width"), (height, "height")):
+            if type(val) not in (int, float):
+                raise TypeError(f"{label} must be a number")
+            if val <= 0:
+                raise ValueError(f"{label} must be positive")
+        self.__w = width
+        self.__h = height
 
     def area(self):
-        return self.__width * self.__height
+        return self.__w * self.__h
 
     def perimeter(self):
-        return 2 * (self.__width + self.__height)
+        return 2 * (self.__w + self.__h)
 
 
 def shape_info(shape):
-    """Print area and perimeter of the given shape."""
+    """Displays area and perimeter of a shape-like object."""
     print("Area: {}".format(shape.area()))
     print("Perimeter: {}".format(shape.perimeter()))

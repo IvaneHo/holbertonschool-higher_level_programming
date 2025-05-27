@@ -1,11 +1,12 @@
-#!/usr/bin/env python3
-"""Abstract class Shape, with Circle and Rectangle subclasses using duck typing."""
+#!/usr/bin/python3
+"""Module that implements Shape, Circle and Rectangle for duck typing."""
 
 from abc import ABC, abstractmethod
 import math
 
 
 class Shape(ABC):
+    """Abstract base class for shapes."""
     @abstractmethod
     def area(self):
         pass
@@ -16,34 +17,31 @@ class Shape(ABC):
 
 
 class Circle(Shape):
+    """Circle shape with radius."""
     def __init__(self, radius):
-        if not isinstance(radius, (int, float)) or radius <= 0:
-            raise ValueError("radius must be a positive number")
-        self.radius = radius
+        self.__radius = abs(radius)
 
     def area(self):
-        return math.pi * self.radius ** 2
+        return  math.pi * (self.__radius ** 2)
 
     def perimeter(self):
-        return 2 * math.pi * self.radius
+        return 2  * math.pi * self.__radius
 
 
 class Rectangle(Shape):
+    """Rectangle shape with width and height."""
     def __init__(self, width, height):
-        if not all(isinstance(v, (int, float)) for v in (width, height)):
-            raise TypeError("width and height must be numbers")
-        if width <= 0 or height <= 0:
-            raise ValueError("width and height must be > 0")
-        self.width = width
-        self.height = height
+        self.__width = width
+        self.__height = height
 
     def area(self):
-        return self.width * self.height
+        return self.__width * self.__height
 
     def perimeter(self):
-        return 2 * (self.width + self.height)
+        return 2 * (self.__width + self.__height)
 
 
 def shape_info(shape):
+    """Print area and perimeter of the given shape."""
     print("Area: {}".format(shape.area()))
     print("Perimeter: {}".format(shape.perimeter()))

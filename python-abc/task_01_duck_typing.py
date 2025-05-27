@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Shape abstract base class with duck-typed Circle and Rectangle implementations."""
+"""Shape abstract base with Circle and Rectangle for duck typing."""
 
 from abc import ABC, abstractmethod
 import math
@@ -17,11 +17,7 @@ class Shape(ABC):
 
 class Circle(Shape):
     def __init__(self, radius):
-        if not isinstance(radius, (int, float)):
-            raise TypeError("radius must be a number")
-        if isinstance(radius, bool) or radius <= 0:
-            raise ValueError("radius must be a positive number")
-        self.__radius = radius
+        self.__radius = radius  # Ne pas corriger silencieusement avec abs
 
     def area(self):
         return math.pi * self.__radius ** 2
@@ -32,11 +28,7 @@ class Circle(Shape):
 
 class Rectangle(Shape):
     def __init__(self, width, height):
-        if not all(isinstance(v, (int, float)) for v in (width, height)):
-            raise TypeError("width and height must be numbers")
-        if any(isinstance(v, bool) or v <= 0 for v in (width, height)):
-            raise ValueError("width and height must be positive numbers")
-        self.__width = width
+        self.__width = width  # Pas de abs
         self.__height = height
 
     def area(self):
@@ -47,8 +39,6 @@ class Rectangle(Shape):
 
 
 def shape_info(shape):
-    """Print area and perimeter of any duck-typed shape object."""
-    if not (hasattr(shape, "area") and hasattr(shape, "perimeter")):
-        raise TypeError("Object must have area and perimeter methods")
+    """Print area and perimeter of the given shape."""
     print("Area: {}".format(shape.area()))
     print("Perimeter: {}".format(shape.perimeter()))

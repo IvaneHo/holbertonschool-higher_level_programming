@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """Module for writing a string to a UTF-8 text file."""
- 
+
 
 def write_file(filename="", text=""):
     """

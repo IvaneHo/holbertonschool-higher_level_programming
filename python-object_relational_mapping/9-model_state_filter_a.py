@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """Lists all State objects containing 'a' in their name from the database."""
 
 import sys

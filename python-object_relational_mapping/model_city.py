@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """Defines the City class linked to the cities table."""
 
 from sqlalchemy import Column, Integer, String, ForeignKey
